@@ -1,0 +1,159 @@
+.footer {
+  padding: 4rem 6rem;
+  background-color: #161616;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  column-gap: 2rem;
+
+  @media only screen and (max-width: 1280px) {
+    padding: 4rem 3rem;
+  }
+
+  @media only screen and (max-width: 780px) {
+    grid-template-columns: 1fr;
+    padding: 3rem 2rem;
+    row-gap: 3rem;
+    margin-left: 0rem;
+  }
+}
+
+.footer_left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  align-items: flex-start;
+}
+
+.footer_left img {
+  width: 250px;
+}
+
+.footer_right {
+  width: 95%;
+}
+
+.footer_input {
+  width: 100%;
+  height: 60px;
+  background-color: rgb(0, 0, 0, 0.4);
+  border: 1px solid rgb(0, 0, 0, 0.9);
+  padding: 8px 25px;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+}
+
+.footer_input input {
+  outline: none;
+  padding: 10px 8px;
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.footer_input button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: #eee;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.flex-footer {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.links-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.footer-text-custom {
+  margin-bottom: 4px;
+}
+.footer-text-social {
+  margin-bottom: 16px;
+}
+.flex-footer-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-text-gray {
+  font-size: 15px;
+  color: #ddd;
+}
+
+.footer-text-white {
+  font-size: 1.3rem;
+  color: #eee;
+}
+.footer-text-underline {
+  cursor: pointer;
+}
+
+.footer-text-underline:hover {
+  text-decoration: underline;
+  color: white;
+  font-weight: 600;
+}
+
+.footer-text-links {
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.footer-text-social {
+  margin-bottom: 1.5rem;
+}
+
+.app {
+  background-color: rgb(0, 0, 0, 0.4);
+  padding: 12px 24px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 400ms;
+}
+
+.app:hover {
+  background-image: linear-gradient(to left, #0575e6, #021b79);
+}
+
+.icon {
+  font-size: 26px;
+  color: #eee;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  padding: 4px;
+  background-color: rgb(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 400ms;
+}
+
+.social-icon .icon {
+  font-size: 18px;
+}
+
+.social-icon:hover {
+  box-shadow: 0 0 4px #0575e6;
+}
+.social-icon:hover .icon {
+  color: #0575e6;
+}
