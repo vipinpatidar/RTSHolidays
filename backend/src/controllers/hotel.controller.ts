@@ -9,6 +9,8 @@ export const getSearchHotel = asyncHandler(async (req, res, next) => {
   const { page } = req.query;
   const query = constructSearchQuery(req.query);
 
+  // console.log(query);
+
   let sortOptions = {};
 
   switch (req.query.sortOption) {

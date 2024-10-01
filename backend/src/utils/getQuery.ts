@@ -46,7 +46,7 @@ export const constructSearchQuery = (queryParams: any) => {
 
   if (queryParams.maxPrice) {
     constructedQuery.pricePerNight = {
-      $lte: parseInt(queryParams.maxPrice).toString(),
+      $lte: parseInt(queryParams.maxPrice),
     };
   }
 

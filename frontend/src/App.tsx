@@ -1,11 +1,9 @@
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, BrowserRouter } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import Register from "./pages/Register";
-import "@tanstack/react-query";
 import { AxiosError } from "axios";
 import RouteProtector from "./layouts/RouteProtector.tsx";
 
-import { BrowserRouter } from "react-router-dom";
 import {
   QueryCache,
   QueryClient,

@@ -239,7 +239,10 @@ const Search = () => {
             <Pagination
               page={responseInfo.pagination.page}
               pages={responseInfo.pagination.totalPages}
-              onPageNumChange={(num: number) => setPage(num)}
+              onPageNumChange={(num: number) => {
+                setPage(num);
+                window.scrollTo(0, 600);
+              }}
             />
           )}
         </div>

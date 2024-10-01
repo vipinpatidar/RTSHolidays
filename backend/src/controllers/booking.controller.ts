@@ -3,6 +3,7 @@ import { ApiError } from "../utils/ApiError";
 import { asyncHandler } from "../utils/asyncHandler";
 import { ApiResponse } from "../utils/ApiResponse";
 import { BookingType, MyHotel } from "../models/my-hotels.model";
+import { User } from "../models/user.model";
 
 /*=================== STRIPE PAYMENT INTENT  ================= */
 
@@ -11,11 +12,13 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_API_KEY as string);
 export const postPaymentIntent = asyncHandler(async (req, res, next) => {
   //1. total cost 2. hotelId 3. userId
   const { hotelId } = req.params;
-  const { numberOfNights } = req.body;
+  const { numberOfNights, address } = req.body;
 
   // console.log(numberOfNights, hotelId);
 
   const userId = req.userId;
+
+  const user = await User.findById({ _id: userId });
 
   const hotel = await MyHotel.findById({ _id: hotelId });
 
@@ -28,6 +31,17 @@ export const postPaymentIntent = asyncHandler(async (req, res, next) => {
   const paymentIntent = await stripe.paymentIntents.create({
     amount: totalCost * 100,
     currency: "inr",
+    description: "Hotel Booking app test payment",
+    shipping: {
+      name: `${user?.firstName} ${user?.lastName}`,
+      address: {
+        line1: address.street,
+        postal_code: address.postalCode,
+        city: address.city,
+        state: address.state,
+        country: address.country,
+      },
+    },
     metadata: {
       hotelId,
       userId: userId,

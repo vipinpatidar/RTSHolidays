@@ -17,7 +17,7 @@ const app: Express = express();
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  limit: 400, // limit each IP to 100 requests per windowMs
+  limit: 100, // limit each IP to 100 requests per windowMs
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
   keyGenerator: (req, res) => req.ip || "", //Method to retrieve custom identifiers for clients, such as their IP address, username, or API Key.
@@ -25,7 +25,7 @@ const limiter = rateLimit({
     throw new ApiError(
       options.statusCode || 500,
       `There are too many requests. You are only allowed ${
-        options.max
+        options.limit
       } requests per ${options.windowMs / 60000} minutes`
     );
   },

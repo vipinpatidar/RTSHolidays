@@ -1,5 +1,4 @@
 import multer from "multer";
-import path from "node:path";
 
 const storage = multer.diskStorage({
   destination: function (req, file, callback) {
@@ -16,4 +15,4 @@ const storage = multer.diskStorage({
 export const upload = multer({
   storage: storage,
   limits: { fileSize: 5 * 1024 * 1024 },
-}); // Maximum size is set to 6MB
+}); // Maximum size is set to 5MB

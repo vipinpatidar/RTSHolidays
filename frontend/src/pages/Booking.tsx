@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosPrivateRequest from "../hooks/useMakeAxiosPrivate";
 import { useAppContext } from "../hooks/useAppContext";
 import { useSearchContext } from "../contexts/hotels.context";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { HotelApiResponseType } from "./HotelDetails";
 import { useEffect, useState } from "react";
 import BookingDetailsSummary from "../components/BookingDetailsSummary";
@@ -16,6 +16,14 @@ const Booking = () => {
   const searchValues = useSearchContext();
   const { hotelId } = useParams();
   const { showToastMsg } = useToastContext();
+  const { state } = useLocation();
+  const address = state?.address || {
+    postalCode: "98140",
+    city: "San Francisco",
+    state: "CA",
+    country: "US",
+    street: "1600 Amphitheatre Parkway",
+  };
 
   const [numberOfNights, setNumberOfNights] = useState<number>(0);
 
@@ -46,6 +54,7 @@ const Booking = () => {
         },
         data: {
           numberOfNights,
+          address: address,
         },
       });
     },
@@ -62,9 +71,10 @@ const Booking = () => {
   });
 
   useEffect(() => {
-    if (hotelId && numberOfNights > 0) {
+    if (hotelId && numberOfNights > 0 && address) {
       mutate(numberOfNights);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [numberOfNights, hotelId, mutate]);
 
   //GET Booking Hotel

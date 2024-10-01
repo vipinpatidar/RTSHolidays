@@ -165,11 +165,8 @@ const postNewTokensUser = asyncHandler(async (req, res, next) => {
       throw new ApiError(401, "Refresh token is expired or invalid.");
     }
 
-    // const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
-    //   userId
-    // );
-
-    const accessToken = loginUser.generateAccessToken();
+    const { accessToken, refreshToken: newRefreshToken } =
+      await generateAccessAndRefreshToken(userId);
 
     const cookieOptions = {
       httpOnly: true,
@@ -179,11 +176,11 @@ const postNewTokensUser = asyncHandler(async (req, res, next) => {
     res
       .status(200)
       .cookie("accessToken", accessToken, cookieOptions)
-      .cookie("refreshToken", incomingRefreshToken, cookieOptions)
+      .cookie("refreshToken", newRefreshToken, cookieOptions)
       .json(
         new ApiResponse(
           200,
-          { accessToken, incomingRefreshToken },
+          { accessToken, newRefreshToken },
           "Access Token refreshed."
         )
       );
